@@ -10,7 +10,7 @@ class Player:
 
     # method to validate player information
     def is_valid(self):
-        
+
         # check that name and postion are not empty and that appearances, goals, and assists are non-negative
         return (
             self.name.strip() != "" and
@@ -25,6 +25,17 @@ class Player:
     def update_stats(self, appearances, goals, assists):
 
         # assign new values to the player's statistics
-        self.appearances = appearances
-        self.goals = goals
-        self.assists = assists
+        self.appearances += appearances
+        self.goals += goals
+        self.assists += assists
+
+    # method to display player information
+    def display_info(self):
+
+        return (
+            f"Name: {self.name}\n"
+            f"Position: {self.position}\n"
+            f"Appearances: {self.appearances}\n"
+            f"Goals: {self.goals}\n"
+            f"Assists: {self.assists}"
+        )
