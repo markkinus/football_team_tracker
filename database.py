@@ -28,4 +28,9 @@ def add_player(player):
     conn.close()
 
     print(f"Player {player.name} added to the database successfully.")
+
+def get_all_players():
+    # connect to the database
+    conn = connect_db()
+    cursor = conn.cursor()
     
