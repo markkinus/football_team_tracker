@@ -4,3 +4,7 @@ import sqlite3
 def connect_db():
     conn = sqlite3.connect('football.db')
     return conn
+
+# insert a new player into the database
+def add_player_to_db(player):
+    
