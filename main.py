@@ -2,7 +2,7 @@
 
 from player import Player
 # from database import connect_db
-from database import add_player
+from database import add_player, get_all_players
 
 
 # # create a new player object with sample data
@@ -45,3 +45,14 @@ try:
 
 except ValueError:
     print("Invalid input. Please enter valid numbers for appearances, goals, and assists.")
+
+# retrieve all players from the database
+players = get_all_players()
+
+# display all players
+if players:
+    print("\nAll Players in the Database:")
+    for player in players:
+        print(f"ID: {player[0]}, Name: {player[1]}, Position: {player[2]}, Appearances: {player[3]}, Goals: {player[4]}, Assists: {player[5]}")
+else:
+    print("No players found in the database.")
