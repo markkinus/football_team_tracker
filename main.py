@@ -2,6 +2,8 @@
 
 from player import Player
 
+# from database import connect_db
+
 # create a new player object with sample data
 player1 = Player("Mark", "Mid-fielder", 20, 5, 3)
 
@@ -11,3 +13,11 @@ if player1.is_valid():
     print(player1.display_info())
 else:
     print("Invalid player information.")
+
+# connect to the database
+# conn = connect_db()
+
+# if conn:
+#     print("Connected to the database successfully.")
+
+# conn.close()
