@@ -29,8 +29,17 @@ def add_player(player):
 
     print(f"Player {player.name} added to the database successfully.")
 
+# retrieve all players from the database
 def get_all_players():
     # connect to the database
     conn = connect_db()
     cursor = conn.cursor()
-    
+
+    # retrieve all players from the database
+    cursor.execute('SELECT * FROM players')
+    players = cursor.fetchall()
+
+    # close the database connection
+    conn.close()
+
+    return players
