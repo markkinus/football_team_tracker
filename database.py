@@ -69,3 +69,22 @@ def update_player(player_id, appearances, goals, assists):
     # close the database connection
     conn.close()
 
+# delete a player from the database
+def delete_player(player_id):
+    # connect to the database
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    # delete player from the database
+    cursor.execute('DELETE FROM players WHERE id = ?', (player_id,))
+
+    # save the changes to the database
+    conn.commit()
+
+    if cursor.rowcount == 0:
+        print(f"No player found with ID {player_id}.")
+    else:
+        print(f"Player {player_id} deleted from the database successfully.")
+
+    # close the database connection
+    conn.close()
