@@ -121,7 +121,16 @@ def main():
 
         elif choice == '2':
             print("\nView All Players:")
-            print("View All Players selected")
+
+            players = get_all_players()
+
+            # display all players
+            if players:
+                print("\nAll Players in the Database:")
+                for player in players:
+                    print(f"ID: {player[0]}, Name: {player[1]}, Position: {player[2]}, Appearances: {player[3]}, Goals: {player[4]}, Assists: {player[5]}")
+            else:
+                print("No players found in the database.")
 
         elif choice == '3':
             print("\nUpdate Player Statistics:")
