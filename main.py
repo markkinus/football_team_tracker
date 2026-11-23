@@ -24,61 +24,100 @@ from database import add_player, get_all_players, update_player, delete_player
 # conn.close()
 
 
-# collect player information from user input
-name = input("Enter player name: ")
-position = input("Enter player position: ")
+# # collect player information from user input
+# name = input("Enter player name: ")
+# position = input("Enter player position: ")
 
-try:
-    appearances = int(input("Enter number of appearances: "))
-    goals = int(input("Enter number of goals: "))
-    assists = int(input("Enter number of assists: "))
+# try:
+#     appearances = int(input("Enter number of appearances: "))
+#     goals = int(input("Enter number of goals: "))
+#     assists = int(input("Enter number of assists: "))
 
-    # create a new player object with user input
-    player = Player(name, position, appearances, goals, assists)
+#     # create a new player object with user input
+#     player = Player(name, position, appearances, goals, assists)
 
-    # check if the player information is valid
-    if player.is_valid():
-        # add the player to the database
-        add_player(player)
-    else:
-        print("Invalid player information.")
+#     # check if the player information is valid
+#     if player.is_valid():
+#         # add the player to the database
+#         add_player(player)
+#     else:
+#         print("Invalid player information.")
 
-except ValueError:
-    print("Invalid input. Please enter valid numbers for appearances, goals, and assists.")
+# except ValueError:
+#     print("Invalid input. Please enter valid numbers for appearances, goals, and assists.")
 
-# retrieve all players from the database
-players = get_all_players()
+# # retrieve all players from the database
+# players = get_all_players()
 
-# display all players
-if players:
-    print("\nAll Players in the Database:")
-    for player in players:
-        print(f"ID: {player[0]}, Name: {player[1]}, Position: {player[2]}, Appearances: {player[3]}, Goals: {player[4]}, Assists: {player[5]}")
-else:
-    print("No players found in the database.")
+# # display all players
+# if players:
+#     print("\nAll Players in the Database:")
+#     for player in players:
+#         print(f"ID: {player[0]}, Name: {player[1]}, Position: {player[2]}, Appearances: {player[3]}, Goals: {player[4]}, Assists: {player[5]}")
+# else:
+#     print("No players found in the database.")
 
-# update player statistics
-print ("\nUpdate Player Statistics:")
+# # update player statistics
+# print ("\nUpdate Player Statistics:")
 
-try:
-    player_id = int(input("\nEnter the ID of the player to update: "))
-    new_appearances = int(input("Enter new number of appearances: "))
-    new_goals = int(input("Enter new number of goals: "))
-    new_assists = int(input("Enter new number of assists: "))
+# try:
+#     player_id = int(input("\nEnter the ID of the player to update: "))
+#     new_appearances = int(input("Enter new number of appearances: "))
+#     new_goals = int(input("Enter new number of goals: "))
+#     new_assists = int(input("Enter new number of assists: "))
 
-    if new_appearances < 0 or new_goals < 0 or new_assists < 0:
-        print("Invalid input. Appearances, goals, and assists cannot be negative.")
-    else:
-        update_player(player_id, new_appearances, new_goals, new_assists)
+#     if new_appearances < 0 or new_goals < 0 or new_assists < 0:
+#         print("Invalid input. Appearances, goals, and assists cannot be negative.")
+#     else:
+#         update_player(player_id, new_appearances, new_goals, new_assists)
 
-except ValueError:
-    print("Invalid input. Please enter valid numbers for the player statistics.")
+# except ValueError:
+#     print("Invalid input. Please enter valid numbers for the player statistics.")
 
-# delete a player
-print("\nDelete Player:")
+# # delete a player
+# print("\nDelete Player:")
 
-try:
-    player_id = int(input("Enter the ID of the player to delete: "))
-    delete_player(player_id)
-except ValueError:
-    print("Invalid input. Please enter a valid player ID.")
+# try:
+#     player_id = int(input("Enter the ID of the player to delete: "))
+#     delete_player(player_id)
+# except ValueError:
+#     print("Invalid input. Please enter a valid player ID.")
+
+# Main function to run the application
+def main():
+    while True:
+        print("\n FOOTBALL TEAM TRACKER ")
+        print("1. Add Player")
+        print("2. View All Players")
+        print("3. Update Player Statistics")
+        print("4. Delete Player")
+        print("5. Exit")
+
+        choice = input("Choose an option (1-5): ")
+
+        if choice == '1':
+            print("\nAdd Player:")
+            print("Add Player selected")
+
+        elif choice == '2':
+            print("\nView All Players:")
+            print("View All Players selected")
+
+        elif choice == '3':
+            print("\nUpdate Player Statistics:")
+            print("Update Player Statistics selected")
+
+        elif choice == '4':
+            print("\nDelete Player:")
+            print("Delete Player selected")
+
+        elif choice == '5':
+            print("Exiting the program.")
+            break
+
+        else:
+            print("Invalid choice. Please select a valid option.")
+
+# run the main function if this script is executed directly
+if __name__ == "__main__":
+    main()
