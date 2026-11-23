@@ -134,11 +134,28 @@ def main():
 
         elif choice == '3':
             print("\nUpdate Player Statistics:")
-            print("Update Player Statistics selected")
+            try:
+                player_id = int(input("\nEnter the ID of the player to update: "))
+                new_appearances = int(input("Enter new number of appearances: "))
+                new_goals = int(input("Enter new number of goals: "))
+                new_assists = int(input("Enter new number of assists: "))
+
+                if new_appearances < 0 or new_goals < 0 or new_assists < 0:
+                    print("Invalid input. Appearances, goals, and assists cannot be negative.")
+                else:
+                    update_player(player_id, new_appearances, new_goals, new_assists)
+
+            except ValueError:
+                print("Invalid input. Please enter valid numbers for the player statistics.")
 
         elif choice == '4':
             print("\nDelete Player:")
-            print("Delete Player selected")
+            
+            try:
+                player_id = int(input("Enter the ID of the player to delete: "))
+                delete_player(player_id)
+            except ValueError:
+                print("Invalid input. Please enter a valid player ID.")
 
         elif choice == '5':
             print("Exiting the program.")
