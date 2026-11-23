@@ -2,7 +2,7 @@
 
 from player import Player
 # from database import connect_db
-from database import add_player, get_all_players, update_player
+from database import add_player, get_all_players, update_player, delete_player
 
 
 # # create a new player object with sample data
@@ -73,3 +73,12 @@ try:
 
 except ValueError:
     print("Invalid input. Please enter valid numbers for the player statistics.")
+
+# delete a player
+print("\nDelete Player:")
+
+try:
+    player_id = int(input("Enter the ID of the player to delete: "))
+    delete_player(player_id)
+except ValueError:
+    print("Invalid input. Please enter a valid player ID.")
