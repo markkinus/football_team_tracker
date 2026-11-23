@@ -2,7 +2,7 @@
 
 from player import Player
 # from database import connect_db
-from database import add_player, get_all_players
+from database import add_player, get_all_players, update_player
 
 
 # # create a new player object with sample data
@@ -56,3 +56,20 @@ if players:
         print(f"ID: {player[0]}, Name: {player[1]}, Position: {player[2]}, Appearances: {player[3]}, Goals: {player[4]}, Assists: {player[5]}")
 else:
     print("No players found in the database.")
+
+# update player statistics
+print ("\nUpdate Player Statistics:")
+
+try:
+    player_id = int(input("\nEnter the ID of the player to update: "))
+    new_appearances = int(input("Enter new number of appearances: "))
+    new_goals = int(input("Enter new number of goals: "))
+    new_assists = int(input("Enter new number of assists: "))
+
+    if new_appearances < 0 or new_goals < 0 or new_assists < 0:
+        print("Invalid input. Appearances, goals, and assists cannot be negative.")
+    else:
+        update_player(player_id, new_appearances, new_goals, new_assists)
+
+except ValueError:
+    print("Invalid input. Please enter valid numbers for the player statistics.")
