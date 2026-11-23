@@ -44,6 +44,21 @@ def get_all_players():
 
     return players
 
+# search for players by name in the database
+def search_player(name):
+    # connect to the database
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    # search for players by name
+    cursor.execute('SELECT * FROM players WHERE name LIKE ?', ('%{name}%',))
+    players = cursor.fetchall()
+
+    # close the database connection
+    conn.close()
+
+    return players
+
 # update player statistics in the database
 def update_player(player_id, appearances, goals, assists):
     # connect to the database
