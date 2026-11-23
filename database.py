@@ -51,7 +51,7 @@ def search_player(name):
     cursor = conn.cursor()
 
     # search for players by name
-    cursor.execute('SELECT * FROM players WHERE name LIKE ?', ('%{name}%',))
+    cursor.execute('SELECT * FROM players WHERE name LIKE ?', (f'%{name}%',))
     players = cursor.fetchall()
 
     # close the database connection

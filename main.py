@@ -2,7 +2,7 @@
 
 from player import Player
 # from database import connect_db
-from database import add_player, get_all_players, update_player, delete_player
+from database import add_player, get_all_players, update_player, delete_player, search_player
 
 
 # # create a new player object with sample data
@@ -91,9 +91,10 @@ def main():
         print("2. View All Players")
         print("3. Update Player Statistics")
         print("4. Delete Player")
-        print("5. Exit")
+        print("5. Search Player by Name")
+        print("6. Exit")
 
-        choice = input("Choose an option (1-5): ")
+        choice = input("Choose an option (1-6): ")
 
         if choice == '1':
             print("\nAdd Player:")
@@ -150,7 +151,7 @@ def main():
 
         elif choice == '4':
             print("\nDelete Player:")
-            
+
             try:
                 player_id = int(input("Enter the ID of the player to delete: "))
                 delete_player(player_id)
@@ -158,6 +159,21 @@ def main():
                 print("Invalid input. Please enter a valid player ID.")
 
         elif choice == '5':
+            print("\nSearch Player by Name:")
+            name = input("Enter the name of the player to search for: ").strip()
+            
+            if name:
+                players = search_player(name)
+                
+                if players:
+                    for player in players:
+                        print(f"ID: {player[0]}, Name: {player[1]}, Position: {player[2]}, Appearances: {player[3]}, Goals: {player[4]}, Assists: {player[5]}")
+                else:
+                    print(f"No players found with name '{name}'.")
+            else:
+                print("Please enter a valid player name.")
+
+        elif choice == '6':
             print("Exiting the program.")
             break
 
