@@ -43,3 +43,29 @@ def get_all_players():
     conn.close()
 
     return players
+
+# update player statistics in the database
+def update_player(player_id, appearances, goals, assists):
+    # connect to the database
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    # update player statistics
+    cursor.execute(
+        '''UPDATE players
+           SET appearances = ?, goals = ?, assists = ?
+           WHERE id = ?''',
+        (appearances, goals, assists, player_id)
+    )
+
+    # save the changes to the database
+    conn.commit()
+
+    if cursor.rowcount == 0:
+        print(f"No player found with ID {player_id}.")
+    else:
+        print(f"Player {player_id} statistics updated successfully.")
+
+    # close the database connection
+    conn.close()
+
