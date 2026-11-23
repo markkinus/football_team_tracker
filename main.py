@@ -97,7 +97,27 @@ def main():
 
         if choice == '1':
             print("\nAdd Player:")
-            print("Add Player selected")
+            
+            name= input("Enter player name: ")
+            position= input("Enter player position: ")
+
+            try:
+                appearances = int(input("Enter number of appearances: "))
+                goals = int(input("Enter number of goals: "))
+                assists = int(input("Enter number of assists: "))
+
+                # create a new player object with user input
+                player = Player(name, position, appearances, goals, assists)
+
+                # check if the player information is valid
+                if player.is_valid():
+                    # add the player to the database
+                    add_player(player)
+                else:
+                    print("Invalid player information.")
+
+            except ValueError:
+                print("Invalid input. Please enter valid numbers for appearances, goals, and assists.")
 
         elif choice == '2':
             print("\nView All Players:")
