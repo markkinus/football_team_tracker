@@ -2,7 +2,7 @@
 
 from player import Player
 # from database import connect_db
-from database import add_player, get_all_players, update_player, delete_player, search_player, get_top_scorers
+from database import initialize_db, add_player, get_all_players, update_player, delete_player, search_player, get_top_scorers
 
 
 # # create a new player object with sample data
@@ -183,7 +183,7 @@ def main():
                     print(f" Name: {player[1]},  Goals: {player[4]}")
             else:
                 print("No players found in the database.")
-                
+
         elif choice == '7':
             print("Exiting the program.")
             break
@@ -193,4 +193,6 @@ def main():
 
 # run the main function if this script is executed directly
 if __name__ == "__main__":
+    # initialize the database
+    initialize_db()
     main()
