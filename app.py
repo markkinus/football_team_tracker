@@ -55,3 +55,16 @@ elif menu == "Add Player":
             st.success(f"Player {player.name} added successfully!")
         else: 
             st.error("Invalid player information. Please check the inputs.")
+
+# View All Players page
+elif menu == "View All Players":
+    st.subheader("All Players")
+
+    players = get_all_players()
+
+    # display all players in the database
+    if players:
+        for player in players:
+            st.write(f"ID: {player[0]}, Name: {player[1]}, Position: {player[2]}, Appearances: {player[3]}, Goals: {player[4]}, Assists: {player[5]}")
+    else:
+        st.info("No players found in the database.")
