@@ -15,7 +15,7 @@ st.title("Football Team Tracker")
 st.write("Manage your football team players and their statistics.")
 
 # Sidebar navigation
-menu = st.sidebar.selectbox("Navigation", ["Dashboard", "Add Player", "View All Players"])
+menu = st.sidebar.selectbox("Navigation", ["Dashboard", "Add Player", "View All Players", "Search Players"])
 
 # Dashboard page
 if menu == "Dashboard":
@@ -68,3 +68,19 @@ elif menu == "View All Players":
             st.write(f"ID: {player[0]}, Name: {player[1]}, Position: {player[2]}, Appearances: {player[3]}, Goals: {player[4]}, Assists: {player[5]}")
     else:
         st.info("No players found in the database.")
+
+elif menu == "Search Players":
+    st.subheader("Search Players by Name")
+
+    search_name = st.text_input("Enter player name to search")
+
+    # search button
+    if st.button("Search"):
+        results = search_player(search_name)
+
+        # display search results
+        if results:
+            for player in results:
+                st.write(f"ID: {player[0]}, Name: {player[1]}, Position: {player[2]}, Appearances: {player[3]}, Goals: {player[4]}, Assists: {player[5]}")
+        else:
+            st.info("No players found with that name.")
