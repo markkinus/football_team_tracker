@@ -44,6 +44,20 @@ def get_all_players():
 
     return players
 
+def get_top_scorers():
+    # connect to the database
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    # retrieve top scorers from the database
+    cursor.execute('SELECT * FROM players ORDER BY goals DESC')
+    top_scorers = cursor.fetchall()
+
+    # close the database connection
+    conn.close()
+
+    return top_scorers
+
 # search for players by name in the database
 def search_player(name):
     # connect to the database
