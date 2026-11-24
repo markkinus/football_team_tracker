@@ -5,6 +5,32 @@ def connect_db():
     conn = sqlite3.connect('football.db')
     return conn
 
+# initialize the database and create the players table if it doesn't exist
+def initialize_db():
+    # connect to the database
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    # create the players table if it doesn't exist
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS players (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            position TEXT NOT NULL,
+            appearances INTEGER,
+            goals INTEGER,
+            assists INTEGER
+        )
+    ''')
+
+    # save the changes to the database
+    conn.commit()
+
+    # close the database connection
+    conn.close()
+
+    print("Database initialized successfully.")
+
 # insert a new player into the database
 def add_player(player):
 
