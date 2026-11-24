@@ -2,7 +2,7 @@
 
 from player import Player
 # from database import connect_db
-from database import initialize_db, add_player, get_all_players, update_player, delete_player, search_player, get_top_scorers
+from database import initialize_db, add_player, get_all_players, update_player, delete_player, search_player, get_top_scorers, export_players_to_csv
 
 
 # # create a new player object with sample data
@@ -93,9 +93,10 @@ def main():
         print("4. Delete Player")
         print("5. Search Player by Name")
         print("6. View Top Scorers")
-        print("7. Exit")
+        print("7. Export Players to CSV")
+        print("8. Exit")
 
-        choice = input("Choose an option (1-7): ")
+        choice = input("Choose an option (1-8): ")
 
         if choice == '1':
             print("\nAdd Player:")
@@ -184,7 +185,12 @@ def main():
             else:
                 print("No players found in the database.")
 
+        
         elif choice == '7':
+            print("\nExport Players to CSV:")
+            export_players_to_csv()
+
+        elif choice == '8':
             print("Exiting the program.")
             break
 
