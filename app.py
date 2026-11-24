@@ -16,7 +16,7 @@ st.title("Football Team Tracker")
 st.write("Manage your football team players and their statistics.")
 
 # Sidebar navigation
-menu = st.sidebar.selectbox("Navigation", ["Dashboard", "Add Player", "View All Players", "Search Players", "Update Player Stats"])
+menu = st.sidebar.selectbox("Navigation", ["Dashboard", "Add Player", "View All Players", "Search Players", "Update Player Stats", "Delete Player"])
 
 # Dashboard page
 if menu == "Dashboard":
@@ -112,6 +112,29 @@ elif menu == "Update Player Stats":
             update_player(selected_id, appearances, goals, assists)
             st.success(f"Player ID {selected_id} statistics updated successfully!")
             st.rerun()  # Refresh the page to show updated stats
+
+    else:
+        st.info("No players found in the database.")
+
+# Delete Player page
+elif menu == "Delete Player":
+    st.subheader("Delete Player")
+
+    players = get_all_players()
+
+    # display a dropdown to select a player for deletion
+    if players:
+        # create a dictionary to map player names to their IDs for the selectbox
+        player_ids = {f"{player[1]} (ID: {player[0]})": player[0] for player in players}
+
+        selected_id = st.selectbox("Select Player ID to Delete", list(player_ids.keys()))
+
+        # delete player button
+        if st.button("Delete Player"):
+            selected_player_id = player_ids[selected_id]
+            delete_player(selected_player_id)
+            st.success(f"Player ID {selected_player_id} deleted successfully!")
+            st.rerun()  # Refresh the page to show updated list
 
     else:
         st.info("No players found in the database.")
