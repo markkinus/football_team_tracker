@@ -16,7 +16,7 @@ st.title("Football Team Tracker")
 st.write("Manage your football team players and their statistics.")
 
 # Sidebar navigation
-menu = st.sidebar.selectbox("Navigation", ["Dashboard", "Add Player", "View All Players", "Search Players", "Update Player Stats", "Delete Player", "View Top Scorers"])
+menu = st.sidebar.selectbox("Navigation", ["Dashboard", "Add Player", "View All Players", "Search Players", "Update Player Stats", "Delete Player", "View Top Scorers", "Export Players to CSV"])
 
 # Dashboard page
 if menu == "Dashboard":
@@ -150,4 +150,31 @@ elif menu == "View Top Scorers":
         for player in top_scorers:
             st.write(f" Name: {player[1]}, Goals: {player[4]}")
     else:
+        st.info("No players found in the database.")
+
+# Export Players to CSV page
+elif menu == "Export Players to CSV":
+    st.subheader("Export Players Records to CSV")
+
+    players = get_all_players()
+
+    # display a download button for exporting players to a CSV file 
+    if players:
+        import pandas as pd
+
+        # create a DataFrame from the players data
+        df = pd.DataFrame(players, columns=['ID', 'Name', 'Position', 'Appearances', 'Goals', 'Assists'])
+
+        # export the DataFrame to a CSV file
+        csv_data = df.to_csv(index=False)
+
+        # provide a download button for the CSV file
+        st.download_button(
+            label="Download Players CSV",
+            data=csv_data,
+            file_name='players.csv',
+            mime='text/csv',
+        )
+
+    else:   
         st.info("No players found in the database.")
