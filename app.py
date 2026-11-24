@@ -29,3 +29,29 @@ if menu == "Dashboard":
     col1.metric("Total Players", len(players))
     col2.metric("Total Goals", sum(p[4] for p in players))
     col3.metric("Total Assists", sum(p[5] for p in players))
+
+# Add Player page
+elif menu == "Add Player":
+    st.subheader("Add New Player")
+
+    # collect player information from user input
+    name = st.text_input("Player Name")
+    position = st.text_input("Position")
+
+    appearances = st.number_input(
+        "Appearances", min_value=0, step=1
+    )
+    
+    goals = st.number_input("Goals", min_value=0, step=1)
+    assists = st.number_input("Assists", min_value=0, step=1)
+
+    # add player button
+    if st.button("Add Player"):
+        player = Player(name, position, appearances, goals, assists)
+
+        # validate player information before adding to the database
+        if player.is_valid():
+            add_player(player)
+            st.success(f"Player {player.name} added successfully!")
+        else: 
+            st.error("Invalid player information. Please check the inputs.")
