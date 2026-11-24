@@ -1,4 +1,5 @@
 import sqlite3
+import csv
 
 # connect to the database
 def connect_db():
@@ -143,3 +144,18 @@ def delete_player(player_id):
 
     # close the database connection
     conn.close()
+
+# export all players to a CSV file
+def export_players_to_csv():
+    players = get_all_players()
+    
+    with open('players.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+
+        # write column headers
+        writer.writerow(['ID', 'Name', 'Position', 'Appearances', 'Goals', 'Assists'])
+
+        # write player data
+        writer.writerows(players)
+
+        print("Players exported to 'players.csv' successfully.")
