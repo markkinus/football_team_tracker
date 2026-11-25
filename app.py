@@ -95,9 +95,11 @@ elif menu == "Update Player Stats":
 
     # display a dropdown to select a player by ID and input fields for new statistics
     if players:
-        player_ids = [player[0] for player in players]
+        player_options = { f"{player[1]} ID: {player[0]}": player[0] for player in players}
 
-        selected_id = st.selectbox("Select Player ID to Update", player_ids)
+        selected_player_name = st.selectbox("Select Player to Update", list(player_options.keys()))
+
+        selected_id = player_options[selected_player_name]
 
         selected_player = next(player for player in players if player[0] == selected_id)
 
